@@ -1,0 +1,15 @@
+name: Markdown to Word
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Convert Markdown to Word
+        uses: jgm/pandoc-action@master
+        with:
+          args: "--from=markdown --to=docx --output=file.docx *.md"
