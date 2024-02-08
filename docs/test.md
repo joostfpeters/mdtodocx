@@ -4,4 +4,5 @@ In this repository i try to set-up a github runner to execute each time an updat
 ## A header
 A paragraph
 *bold*
-~italic~
+
+_italic_
