@@ -8,8 +8,23 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Convert Markdown to Word
-        uses: jgm/pandoc-action@master
-        with:
-          args: "--from=markdown --to=docx --output=file.docx *.md"
+    - name: Checkout repository
+      uses: actions/checkout@v2
+ 
+    - name: Install Pandoc
+      run: |
+        sudo apt-get update
+        sudo apt-get install pandoc
+ 
+    - name: Convert Markdown to Word
+      run: |
+        mkdir output
+        for file in *.md; do
+          pandoc "$file" -o "output/${file%.md}.docx"
+        done
+ 
+    - name: Save converted Word files
+      uses: actions/upload-artifact@v2
+      with:
+        name: word-files
+        path: output
