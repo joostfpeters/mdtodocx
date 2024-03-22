@@ -18,7 +18,10 @@ jobs:
  
     - name: Convert Markdown to Word
       run: |
-        mkdir output/docs
+        mkdir output
+        cd output
+        mkdir docs
+        cd ..
         for file in docs/*.md; do
           pandoc "$file" -o "output/${file%.md}.docx"
         done
